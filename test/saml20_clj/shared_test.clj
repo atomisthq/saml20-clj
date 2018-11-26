@@ -8,9 +8,9 @@
                    :attrs {:hasmore "1"}
                    :content [{:tag :tag2
                               :attrs {:hasmore "1"}
-                              :content[{:tag :tag3
-                                        :attrs nil
-                                        :content ["foobar"]}]}
+                              :content [{:tag :tag3
+                                         :attrs nil
+                                         :content ["foobar"]}]}
                              {:tag :tag4
                               :attrs nil
                               :content ["inter arma enim silent leges"]}]}
@@ -22,5 +22,5 @@
 
 (deftest test-parse-xml-str
   (testing "Testing xml parsing from a string."
-  (let [parsed (shared/parse-xml-str arb-xml)]
-    (is (= parsed arb-xml-rep)))))
+    (let [parsed (shared/parse-xml-str arb-xml)]
+      (is (= parsed arb-xml-rep)))))

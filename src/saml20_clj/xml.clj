@@ -15,8 +15,8 @@
   "Creates an XML string using hiccup."
   [structure]
   (str
-    (hiccup.page/xml-declaration "UTF-8")
-    (hiccup.core/html structure)))
+   (hiccup.page/xml-declaration "UTF-8")
+   (hiccup.core/html structure)))
 
 (defn singleton-key-selector
   "Always uses a provided key as a selector."
@@ -68,9 +68,9 @@
         xml-sig-node (xmlsig-from-xmldoc xmldoc)
         validate-signature #(let [context (get-dom-context (singleton-key-selector public-key) xml-sig-node)
                                   signature (.unmarshalXMLSignature sig-factory context)]
-                              (.validate signature context))] 
+                              (.validate signature context))]
     (if xml-sig-node (validate-signature)
-      true)))
+        true)))
 
 (defn dom-node->str [dom-node]
   (let [canonicalizer (Canonicalizer/getInstance Canonicalizer/ALGO_ID_C14N_EXCL_OMIT_COMMENTS)]

@@ -20,7 +20,7 @@
                                   [org.clojure/tools.nrepl "0.2.3"]
                                   [hiccup "1.0.5"]
                                   [http-kit "2.1.18"]]}}
-    :repositories [["releases" {:url      "https://sforzando.jfrog.io/sforzando/libs-release-local"
+  :repositories [["releases" {:url      "https://sforzando.jfrog.io/sforzando/libs-release-local"
                               :sign-releases false
                               :username [:env/artifactory_user]
                               :password [:env/artifactory_pwd]}]]

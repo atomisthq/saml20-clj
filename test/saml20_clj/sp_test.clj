@@ -11,7 +11,6 @@
           ival @mutable]
       (is (= (inc ival) (next-saml-id! mutable))))))
 
-
 (deftest test-saml-timeout-bump
   (testing "Attempt to bump a stateful saml timeout on a fake request."
     (let [mutable (ref {})
