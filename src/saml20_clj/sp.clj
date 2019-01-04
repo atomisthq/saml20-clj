@@ -1,6 +1,5 @@
 (ns saml20-clj.sp
-  (:require [clojure.data.xml :as xml]
-            [clojure.xml :refer [parse]]
+  (:require [clojure.xml :refer [parse]]
             [ring.util.response :refer [redirect]]
             [clj-time.core :as ctime]
             [clj-time.coerce :refer [to-timestamp]]
@@ -8,18 +7,10 @@
             [saml20-clj.shared :as shared]
             [saml20-clj.xml :as saml-xml]
             [clojure.data.zip.xml :as zf])
-  (:import [javax.xml.crypto]
-           [javax.xml.crypto.dsig XMLSignature XMLSignatureFactory]
-           [javax.xml.crypto.dom]
-           [org.apache.xml.security Init]
+  (:import [org.apache.xml.security Init]
            [org.apache.xml.security.utils Constants ElementProxy]
            [org.apache.xml.security.transforms Transforms]
-           [org.apache.xml.security.c14n Canonicalizer]
-           [javax.xml.crypto.dsig.dom DOMValidateContext]
-           [java.security]
-           [javax.xml.parsers DocumentBuilderFactory]
-           [org.w3c.dom Document]
-           [org.w3c.dom NodeList])
+           [org.apache.xml.security.c14n Canonicalizer])
   (:gen-class))
 
 ;;; These next 3 fns are defaults for storing SAML state in memory.
