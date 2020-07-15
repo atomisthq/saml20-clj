@@ -84,7 +84,7 @@
       {:xmlns:saml "urn:oasis:names:tc:SAML:2.0:assertion"}
       saml-service-name]
        ;;[:samlp:NameIDPolicy {:AllowCreate false :Format saml-format}]
-])))
+     ])))
 
 (defn generate-mutables
   []
@@ -283,7 +283,7 @@
           (println (.getMessage ex))
           false)))
     true ;; if not signature is present
-))
+    ))
 
 (defn parse-saml-resp-status
   "Parses and returns information about the status (i.e. successful or not), the version, addressing info etc. of the SAML response
