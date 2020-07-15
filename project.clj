@@ -20,10 +20,15 @@
                                   [org.clojure/tools.nrepl "0.2.3"]
                                   [hiccup "1.0.5"]
                                   [http-kit "2.1.18"]]}}
-  :repositories [["releases" {:url      "https://sforzando.jfrog.io/sforzando/libs-release-local"
-                              :sign-releases false
-                              :username [:env/artifactory_user]
-                              :password [:env/artifactory_pwd]}]]
+
+  :repositories ^:replace [["clojars" {:url "https://clojars.org/repo"}]
+                           ["central" {:url "https://repo1.maven.org/maven2/" :snapshots false}]
+                           ["releases" {:url "https://sforzando.jfrog.io/sforzando/libs-release-local"
+                                        :username [:gpg :env/mvn_artifactorymavenrepository_user]
+                                        :password [:gpg :env/mvn_artifactorymavenrepository_pwd]}]
+                           ["plugins" {:url "https://sforzando.jfrog.io/sforzando/plugins-release"
+                                       :username [:gpg :env/mvn_artifactorymavenrepository_user]
+                                       :password [:gpg :env/mvn_artifactorymavenrepository_pwd]}]]
 
   :release-tasks [["vcs" "assert-committed"]
                   ["change" "version" "leiningen.release/bump-version" "release"]
