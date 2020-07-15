@@ -24,6 +24,7 @@
   :repositories ^:replace [["clojars" {:url "https://clojars.org/repo"}]
                            ["central" {:url "https://repo1.maven.org/maven2/" :snapshots false}]
                            ["releases" {:url "https://sforzando.jfrog.io/sforzando/libs-release-local"
+                                        :sign-releases false
                                         :username [:gpg :env/mvn_artifactorymavenrepository_user]
                                         :password [:gpg :env/mvn_artifactorymavenrepository_pwd]}]
                            ["plugins" {:url "https://sforzando.jfrog.io/sforzando/plugins-release"
