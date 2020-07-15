@@ -224,6 +224,18 @@
                          (new org.opensaml.xml.encryption.InlineEncryptedKeyResolver))]
       decrypter)))
 
+(defn- authz-decision-statements
+  [assertion]
+  (let [authz-decision-statements (.getAuthzDecisionStatements assertion)]
+    (->> authz-decision-statements
+         (map (fn [decision]
+                {:actions (map (fn [action] {:action (.getAction action)
+                                             :namespace (.getNamespace action)})
+                               (.getActions decision))
+                 :decision (str (.getDecision decision))
+                 :evidence (.getEvidence decision)
+                 :resource (.getResource decision)})))))
+
 ;; http://kevnls.blogspot.gr/2009/07/processing-saml-in-java-using-opensaml.html
 ;; http://stackoverflow.com/questions/9422545/decrypting-encrypted-assertion-using-saml-2-0-in-java-using-opensaml
 (defn parse-saml-assertion
@@ -252,7 +264,8 @@
      {:in-response-to (.getInResponseTo subject-confirmation-data)
       :not-before (to-timestamp (.getNotBefore subject-confirmation-data))
       :not-on-or-after (to-timestamp (.getNotOnOrAfter subject-confirmation-data))
-      :recipient (.getRecipient subject-confirmation-data)}}))
+      :recipient (.getRecipient subject-confirmation-data)}
+     :authz-decision-statements (authz-decision-statements assertion)}))
 
 (defn validate-saml-response-signature
   "Checks (if exists) the signature of SAML Response given the IdP certificate"
